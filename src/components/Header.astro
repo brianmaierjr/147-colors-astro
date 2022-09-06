@@ -1,0 +1,102 @@
+---
+import Filters from "../components/Filters.astro";
+---
+
+<header class="header">
+  <div class="header__top">
+    <h1 class="header__logo">
+      <a href="/"><strong>147</strong> Colors</a>
+    </h1>
+    <button class="filterTrigger">Filters</button>
+  </div>
+
+  <div class="header__bottom flow">
+    <Filters />
+    <div class="header__copyright">
+      <p>
+        &copy; <script type="text/javascript">
+          document.write(new Date().getFullYear());
+        </script>
+        <a href="https://brianmaierjr.com" target="_blank">Brian Maier Jr.</a>
+      </p>
+    </div>
+  </div>
+</header>
+
+<style lang="scss">
+  header {
+    background-color: var(--surface1);
+    min-width: 100vw;
+    text-align: center;
+    position: sticky;
+    top: 0;
+
+    @media (min-width: 800px) {
+      padding: var(--space-m);
+      min-width: 15em;
+      min-height: 100vh;
+      overflow-y: auto;
+    }
+  }
+
+  .header__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (min-width: 800px) {
+      text-align: center;
+      justify-content: center;
+    }
+  }
+
+  .header__bottom {
+    display: none;
+
+    @media (min-width: 800px) {
+      display: block;
+    }
+  }
+
+  .header__copyright {
+    font-size: var(--step--1);
+  }
+
+  h1 {
+    font-family: "Muli", sans-serif;
+    font-size: var(--step-1);
+    margin-bottom: 0;
+    padding-left: var(--space-m);
+    font-weight: 400;
+
+    @media (min-width: 800px) {
+      padding-left: 0;
+      margin-bottom: 1em;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--text-color);
+
+      strong {
+        text-decoration: line-through;
+      }
+    }
+  }
+
+  .filterTrigger {
+    padding: var(--space-m);
+    border: 0;
+    background-color: var(--surface2);
+    color: var(--text-color);
+    text-transform: uppercase;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    @media (min-width: 800px) {
+      display: none;
+    }
+  }
+</style>

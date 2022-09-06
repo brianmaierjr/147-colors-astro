@@ -1,0 +1,124 @@
+---
+import colorData from "../data/colors.json";
+---
+
+<div class="filtering">
+  <h2 class="filtering__title">Filter colors:</h2>
+  <ul class="filteringList noList flow">
+    <li class="filteringList__item">
+      <button class="filter" data-filter="all">
+        All
+        <span></span>
+      </button>
+    </li>
+    <li class="filteringList__item">
+      <button class="filter" data-filter="pink">Pink</button>
+    </li>
+    <li class="filteringList__item">
+      <button class="filter" data-filter="red">Red</button>
+    </li>
+    <li class="filteringList__item">
+      <button class="filter" data-filter="orange">Orange</button>
+    </li>
+    <li class="filteringList__item">
+      <button class="filter" data-filter="yellow">Yellow</button>
+    </li>
+    <li class="filteringList__item">
+      <button class="filter" data-filter="brown">Brown</button>
+    </li>
+    <li class="filteringList__item">
+      <button class="filter" data-filter="green">Green</button>
+    </li>
+    <li class="filteringList__item">
+      <button class="filter" data-filter="cyan">Cyan</button>
+    </li>
+    <li class="filteringList__item">
+      <button class="filter" data-filter="blue">Blue</button>
+    </li>
+    <li class="filteringList__item">
+      <button class="filter" data-filter="purple">Purple</button>
+    </li>
+    <li class="filteringList__item">
+      <button class="filter" data-filter="gray">Gray</button>
+    </li>
+  </ul>
+</div>
+
+<script>
+  const filters = document.querySelectorAll(".filter");
+
+  filters.forEach((filter) => {
+    filter.addEventListener("click", function () {
+      let selectedFilter = filter.getAttribute("data-filter");
+      let itemsToHide = document.querySelectorAll(
+        `.colorGrid__item:not([data-filter='${selectedFilter}'])`
+      );
+      let itemsToShow = document.querySelectorAll(
+        `.colorGrid [data-filter='${selectedFilter}']`
+      );
+
+      filters.forEach((filter) => {
+        filter.classList.remove("active");
+      });
+
+      this.classList.add("active");
+
+      if (selectedFilter == "all") {
+        itemsToHide = [];
+        itemsToShow = document.querySelectorAll(".colorGrid__item");
+      }
+
+      itemsToHide.forEach((el) => {
+        el.classList.add("hide");
+        el.classList.remove("show");
+      });
+
+      itemsToShow.forEach((el) => {
+        el.classList.remove("hide");
+        el.classList.add("show");
+      });
+    });
+  });
+</script>
+
+<style lang="scss">
+  h2 {
+    font-size: var(--step-0);
+    font-weight: normal;
+    font-style: italic;
+  }
+
+  .filtering {
+    --flow-space: 0.5em;
+
+    @media (min-width: 800px) {
+      margin-bottom: var(--space-s);
+    }
+  }
+
+  .filter {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: var(--space-2xs);
+    width: 100%;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 0.9em;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    &.actibe {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+</style>

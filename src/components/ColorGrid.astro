@@ -1,0 +1,81 @@
+---
+import colorData from "../data/colors.json";
+---
+
+<section class="colorGrid">
+  {
+    colorData.map((color) => (
+      <a
+        class={`colorGrid__item ${color.theme} ${color.group}`}
+        style={`background-color: ${color.name};`}
+        data-filter={`${color.group}`.toLowerCase()}
+        href={`/${color.name}`}
+      >
+        <span class="colors__name">{color.name}</span>
+      </a>
+    ))
+  }
+</section>
+
+<style lang="scss">
+  .colorGrid {
+    @media (min-width: 800px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (min-width: 1000px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @media (min-width: 1440px) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+
+  .colorGrid__item {
+    padding: var(--space-xl);
+    display: inline-block;
+    text-decoration: none;
+    display: grid;
+    place-content: center;
+    transition: 0.2s all ease-in-out;
+    text-align: center;
+
+    @media (min-width: 800px) {
+      aspect-ratio: 1/1;
+      display: grid;
+      align-self: stretch;
+    }
+
+    &:hover,
+    &:focus {
+      span {
+        opacity: 1;
+      }
+    }
+
+    &.hide {
+      display: none;
+    }
+
+    &.show {
+      display: grid;
+    }
+
+    &.dark {
+      color: white;
+    }
+
+    &.light {
+      color: #111111;
+    }
+
+    span {
+      transition: 0.25s all ease-in-out;
+      opacity: 1;
+
+      @media (min-width: 800px) {
+        opacity: 0;
+      }
+    }
+  }
+</style>

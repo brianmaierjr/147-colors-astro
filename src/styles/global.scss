@@ -1,0 +1,77 @@
+@use "reset";
+@use "typography";
+@use "utility";
+
+:root {
+  --surface1: #111111;
+  --surface2: #000000;
+  --text-color: white;
+  --link-color: cadetblue;
+
+  /* Fluid Type Scale
+  @link https://utopia.fyi/type/calculator?c=320,16,1.2,1140,20,1.25,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l */
+
+  --step--2: clamp(0.69rem, calc(0.65rem + 0.21vw), 0.80rem);
+  --step--1: clamp(0.83rem, calc(0.77rem + 0.33vw), 1.00rem);
+  --step-0: clamp(1.00rem, calc(0.90rem + 0.49vw), 1.25rem);
+  --step-1: clamp(1.20rem, calc(1.06rem + 0.71vw), 1.56rem);
+  --step-2: clamp(1.44rem, calc(1.24rem + 1.00vw), 1.95rem);
+  --step-3: clamp(1.73rem, calc(1.45rem + 1.39vw), 2.44rem);
+  --step-4: clamp(2.07rem, calc(1.69rem + 1.91vw), 3.05rem);
+  --step-5: clamp(2.49rem, calc(1.97rem + 2.59vw), 3.82rem);
+  --step-6: clamp(2.99rem, calc(2.29rem + 3.48vw), 4.77rem);
+
+  /* Fluid Spacing Scale
+  @link https://utopia.fyi/space/calculator?c=320,16,1.2,1140,20,1.25,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l */
+
+  --space-3xs: clamp(0.25rem, calc(0.23rem + 0.12vw), 0.31rem);
+  --space-2xs: clamp(0.50rem, calc(0.45rem + 0.24vw), 0.63rem);
+  --space-xs: clamp(0.75rem, calc(0.68rem + 0.37vw), 0.94rem);
+  --space-s: clamp(1.00rem, calc(0.90rem + 0.49vw), 1.25rem);
+  --space-m: clamp(1.50rem, calc(1.35rem + 0.73vw), 1.88rem);
+  --space-l: clamp(2.00rem, calc(1.80rem + 0.98vw), 2.50rem);
+  --space-xl: clamp(3.00rem, calc(2.71rem + 1.46vw), 3.75rem);
+  --space-2xl: clamp(4.00rem, calc(3.61rem + 1.95vw), 5.00rem);
+  --space-3xl: clamp(6.00rem, calc(5.41rem + 2.93vw), 7.50rem);
+
+  /* One-up pairs */
+  --space-3xs-2xs: clamp(0.25rem, calc(0.10rem + 0.73vw), 0.63rem);
+  --space-2xs-xs: clamp(0.50rem, calc(0.33rem + 0.85vw), 0.94rem);
+  --space-xs-s: clamp(0.75rem, calc(0.55rem + 0.98vw), 1.25rem);
+  --space-s-m: clamp(1.00rem, calc(0.66rem + 1.71vw), 1.88rem);
+  --space-m-l: clamp(1.50rem, calc(1.11rem + 1.95vw), 2.50rem);
+  --space-l-xl: clamp(2.00rem, calc(1.32rem + 3.41vw), 3.75rem);
+  --space-xl-2xl: clamp(3.00rem, calc(2.22rem + 3.90vw), 5.00rem);
+  --space-2xl-3xl: clamp(4.00rem, calc(2.63rem + 6.83vw), 7.50rem);
+
+  /* Custom pairs */
+  --space-s-l: clamp(1.00rem, calc(0.41rem + 2.93vw), 2.50rem);
+
+  @media (prefers-color-scheme: light) {
+    --surface1: whitesmoke;
+    --surface2: white;
+    --text-color: #111111;
+    --link-color: cadetblue;
+  }
+}
+
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--surface2);
+  color: var(--text-color);
+  margin: 0;
+  font-size: var(--step-0);
+}
+
+a {
+  color: var(--link-color);
+}
+
+.flow>* {
+  margin-bottom: var(--flow-space, 1em);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

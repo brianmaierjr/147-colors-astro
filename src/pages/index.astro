@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import ColorGrid from "../components/ColorGrid.astro";
+---
+
+<Layout title="Welcome to 147 Colors">
+  <Header />
+
+  <main>
+    <ColorGrid />
+  </main>
+</Layout>
+
+<style lang="scss">
+  body {
+    margin: 0;
+
+    @media (min-width: 800px) {
+      display: flex;
+      height: 100vh;
+    }
+  }
+
+  main {
+    @media (min-width: 800px) {
+      flex: 1;
+      overflow-y: scroll;
+    }
+  }
+</style>

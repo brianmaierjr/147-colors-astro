@@ -89,12 +89,19 @@ const uniqueGroupsArray = Object.values(colorsObject);
     });
   });
 
-  const filterTrigger = document.querySelector('.filterTrigger');
+  // Trigger Filters on Mobile
+  function toggleFilters() {
+    const filters = document.querySelector('.header__bottom');
+    
+    if (filters.classList.contains('is-visible')) {
+      filters.classList.remove('is-visible');
+    } else {
+      filters.classList.remove('is-visible');
+    }
+  }
   
-  filterTrigger.addEventListener('click', function() {
-    console.log('clicked');
-    document.querySelector('.header__bottom').classList.toggle('is-visible');
-  })
+  const filterTrigger = document.querySelector('.filterTrigger');
+  filterTrigger.addEventListener('click', toggleFilters );
 </script>
 
 <style lang="scss">

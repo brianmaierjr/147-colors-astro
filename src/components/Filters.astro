@@ -4,22 +4,21 @@ import colorData from "../data/colors.json";
 // const groupsArray = colorData.map((colorObject) => colorObject.group);
 // const uniqueGroupsArray = [...new Set(groupsArray)];
 
-let colorsObject = {}
+let colorsObject = {};
 
-colorData.forEach(color => {
-  let colorGroup = color.group
-  
+colorData.forEach((color) => {
+  let colorGroup = color.group;
+
   if (colorsObject[colorGroup]) {
-      let count = colorsObject[colorGroup].count
-      colorsObject[colorGroup].count++
+    let count = colorsObject[colorGroup].count;
+    colorsObject[colorGroup].count++;
   } else {
-      colorsObject[colorGroup] = {
-          name: colorGroup,
-          count: 1
-       
-      }
+    colorsObject[colorGroup] = {
+      name: colorGroup,
+      count: 1,
+    };
   }
-})
+});
 
 const uniqueGroupsArray = Object.values(colorsObject);
 ---
@@ -31,9 +30,9 @@ const uniqueGroupsArray = Object.values(colorsObject);
       <button class="filter active" data-filter="all">
         <span class="filter__name">
           <span class="swatch"></span>
-            All
+          All
         </span>
-        <span class="count">{ colorData.length }</span>
+        <span class="count">{colorData.length}</span>
       </button>
     </li>
 
@@ -42,7 +41,7 @@ const uniqueGroupsArray = Object.values(colorsObject);
         <li class="filteringList__item">
           <button class="filter" data-filter={color.name}>
             <span class="filter__name">
-              <span class="swatch"></span>
+              <span class="swatch" />
               {color.name.toUpperCase()}
             </span>
             <span class="count">{color.count}</span>
@@ -91,17 +90,17 @@ const uniqueGroupsArray = Object.values(colorsObject);
 
   // Trigger Filters on Mobile
   function toggleFilters() {
-    const filters = document.querySelector('.header__bottom');
-    
-    if (filters.classList.contains('is-visible')) {
-      filters.classList.remove('is-visible');
+    const filters = document.querySelector(".header__bottom");
+
+    if (filters.classList.contains("is-visible")) {
+      filters.classList.remove("is-visible");
     } else {
-      filters.classList.remove('is-visible');
+      filters.classList.remove("is-visible");
     }
   }
-  
-  const filterTrigger = document.querySelector('.filterTrigger');
-  filterTrigger.addEventListener('click', toggleFilters );
+
+  const filterTrigger = document.querySelector(".filterTrigger");
+  filterTrigger.addEventListener("click", toggleFilters);
 </script>
 
 <style lang="scss">
@@ -136,12 +135,12 @@ const uniqueGroupsArray = Object.values(colorsObject);
 
     &__name {
       display: flex;
-      gap: .5em;
+      gap: 0.5em;
       align-items: center;
     }
 
     .count {
-      opacity: .5;
+      opacity: 0.5;
     }
 
     &:hover,
@@ -164,7 +163,7 @@ const uniqueGroupsArray = Object.values(colorsObject);
     }
 
     &[data-filter="all"] .swatch {
-      background-image: url(../147swatches.svg);
+      background-image: url(../img/147swatches.svg);
       background-size: 100% 100%;
     }
     &[data-filter="pink"] .swatch {

@@ -102,7 +102,6 @@ const uniqueGroupsArray = Object.values(colorsObject);
   .filter {
     background-color: var(--surface3);
     padding: var(--space-2xs);
-    padding-left: var(--space-xl);
     width: 100%;
     border: none;
     color: var(--text-color);
@@ -133,10 +132,8 @@ const uniqueGroupsArray = Object.values(colorsObject);
     &:before {
       content: "";
       height: 50%;
+      width: 10%;
       aspect-ratio: 1;
-      position: absolute;
-      top: 25%;
-      left: 0.5em;
       background-color: white;
     }
 

@@ -14,19 +14,37 @@ const { id } = Astro.params;
 const { color } = Astro.props;
 ---
 
-<Layout title={color.name}>
-  <div style={`background-color: ${color.name};`.toLowerCase()} class={`page-color ${color.theme} ${color.name}`.toLowerCase()}></div>
+<Layout title={`147 Colors | ${color.name}`}>
+  <div class={`flow color ${color.theme}`.toLowerCase()} style={`background-color: ${color.name};`}>
     <h1>{color.name}</h1>
-    #{color.hex}
-    {color.rgb}
+    <div class="color-btns">
+      <button id="hex" onclick="copyHex()">#{color.hex}</button>
+      <button id="rgb" onclick="copyRGB()">{color.rgb}</button>
+    </div>
 
-    <a href="/">&larr; Back to the color grid</a>
-</div>
-</Layout>
+    <a class="back-link" href="/">&larr; Back to the color grid</a>
+  </div>
+</Layout> 
+
+<script>
+function copyHex() {
+  // Get the text field
+  var copyText = document.getElementById("hex");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+
+  // Alert the copied text
+  alert("Copied the text: " + copyText.value);
+}
+</script>
 
 <style lang="scss">
   body {
-    border: 2rem solid white;
     height: 100vh;
     width: 100vw;
     margin: 0;
@@ -35,8 +53,26 @@ const { color } = Astro.props;
     place-content: center;
     text-align: center;
   }
+  
+  .color {
+    border: var(--space-s-l) solid white;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-content: center;
+  }
 
   h1 {
     font-size: var(--step-6, 2em);
+  }
+
+  .dark,
+  .dark a {
+    color: white;
+  }
+
+  .light,
+  .light a {
+    color: black;
   }
 </style>

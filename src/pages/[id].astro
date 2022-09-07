@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+import colorData from "../data/colors.json";
+
+export async function getStaticPaths() {
+  return colorData.map((color) => {
+    return {
+      params: { id: color.name.toLowerCase() },
+      props: { color },
+    };
+  });
+}
+const { id } = Astro.params;
+const { color } = Astro.props;
+---
+
+<Layout title={color.name}>
+  <div style={`background-color: ${color.name};`.toLowerCase()} class={`page-color ${color.theme} ${color.name}`.toLowerCase()}></div>
+    <h1>{color.name}</h1>
+    #{color.hex}
+    {color.rgb}
+
+    <a href="/">&larr; Back to the color grid</a>
+</div>
+</Layout>
+
+<style lang="scss">
+  body {
+    border: 2rem solid white;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: var(--space-xl);
+    display: grid;
+    place-content: center;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: var(--step-6, 2em);
+  }
+</style>

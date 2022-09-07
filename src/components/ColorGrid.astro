@@ -9,7 +9,7 @@ import colorData from "../data/colors.json";
         class={`colorGrid__item ${color.theme} ${color.group}`}
         style={`background-color: ${color.name};`}
         data-filter={`${color.group}`.toLowerCase()}
-        href={`/${color.name}`}
+        href={`/${color.name}`.toLowerCase()}
       >
         <span class="colors__name">{color.name}</span>
       </a>
@@ -21,13 +21,7 @@ import colorData from "../data/colors.json";
   .colorGrid {
     @media (min-width: 800px) {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-    @media (min-width: 1000px) {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-    @media (min-width: 1440px) {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
   }
 
@@ -44,6 +38,7 @@ import colorData from "../data/colors.json";
       aspect-ratio: 1/1;
       display: grid;
       align-self: stretch;
+      padding: 0;
     }
 
     &:hover,

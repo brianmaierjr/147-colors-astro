@@ -5,7 +5,9 @@
 :root {
   --surface1: #111111;
   --surface2: #000000;
+  --surface3: #ffffff0d;
   --text-color: white;
+  --text-color-revers: #111111;
   --link-color: cadetblue;
 
   /* Fluid Type Scale
@@ -50,7 +52,9 @@
   @media (prefers-color-scheme: light) {
     --surface1: whitesmoke;
     --surface2: white;
+    --surface3: #e1e1e1;
     --text-color: #111111;
+    --text-color-reverse: white;
     --link-color: cadetblue;
   }
 }

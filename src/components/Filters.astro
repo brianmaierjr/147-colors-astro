@@ -1,46 +1,49 @@
 ---
 import colorData from "../data/colors.json";
+
+// const groupsArray = colorData.map((colorObject) => colorObject.group);
+// const uniqueGroupsArray = [...new Set(groupsArray)];
+
+let colorsObject = {}
+
+colorData.forEach(color => {
+  let colorGroup = color.group
+  
+  if (colorsObject[colorGroup]) {
+      let count = colorsObject[colorGroup].count
+      colorsObject[colorGroup].count++
+  } else {
+      colorsObject[colorGroup] = {
+          name: colorGroup,
+          count: 1
+       
+      }
+  }
+})
+
+const uniqueGroupsArray = Object.values(colorsObject);
 ---
 
 <div class="filtering">
   <h2 class="filtering__title">Filter colors:</h2>
   <ul class="filteringList noList flow">
     <li class="filteringList__item">
-      <button class="filter" data-filter="all">
+      <button class="filter active" data-filter="all">
         All
-        <span></span>
+        <span>{ colorData.length }</span>
       </button>
     </li>
-    <li class="filteringList__item">
-      <button class="filter" data-filter="pink">Pink</button>
-    </li>
-    <li class="filteringList__item">
-      <button class="filter" data-filter="red">Red</button>
-    </li>
-    <li class="filteringList__item">
-      <button class="filter" data-filter="orange">Orange</button>
-    </li>
-    <li class="filteringList__item">
-      <button class="filter" data-filter="yellow">Yellow</button>
-    </li>
-    <li class="filteringList__item">
-      <button class="filter" data-filter="brown">Brown</button>
-    </li>
-    <li class="filteringList__item">
-      <button class="filter" data-filter="green">Green</button>
-    </li>
-    <li class="filteringList__item">
-      <button class="filter" data-filter="cyan">Cyan</button>
-    </li>
-    <li class="filteringList__item">
-      <button class="filter" data-filter="blue">Blue</button>
-    </li>
-    <li class="filteringList__item">
-      <button class="filter" data-filter="purple">Purple</button>
-    </li>
-    <li class="filteringList__item">
-      <button class="filter" data-filter="gray">Gray</button>
-    </li>
+
+    {
+      uniqueGroupsArray.map((color) => (
+        <li class="filteringList__item">
+          <button class="filter" data-filter={color.name}>
+            {color.name.toUpperCase()}
+            <span>{color.count}</span>
+          </button>
+        </li>
+      ))
+    }
   </ul>
 </div>
 
@@ -97,11 +100,12 @@ import colorData from "../data/colors.json";
   }
 
   .filter {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--surface3);
     padding: var(--space-2xs);
+    padding-left: var(--space-xl);
     width: 100%;
     border: none;
-    color: white;
+    color: var(--text-color);
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -109,6 +113,11 @@ import colorData from "../data/colors.json";
     text-transform: uppercase;
     font-weight: normal;
     font-size: 0.9em;
+    position: relative;
+
+    span  {
+      opacity: .5;
+    }
 
     &:hover,
     &:focus {
@@ -117,8 +126,53 @@ import colorData from "../data/colors.json";
     &:hover {
       cursor: pointer;
     }
-    &.actibe {
-      background-color: rgba(255, 255, 255, 0.1);
+    &.active {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &:before {
+      content: "";
+      height: 50%;
+      aspect-ratio: 1;
+      position: absolute;
+      top: 25%;
+      left: 0.5em;
+      background-color: white;
+    }
+
+    &[data-filter="all"]:before {
+      background-image: url(../147swatches.svg);
+      background-size: 100% 100%;
+    }
+    &[data-filter="pink"]:before {
+      background-color: pink;
+    }
+    &[data-filter="red"]:before {
+      background-color: red;
+    }
+    &[data-filter="orange"]:before {
+      background-color: orange;
+    }
+    &[data-filter="yellow"]:before {
+      background-color: yellow;
+    }
+    &[data-filter="brown"]:before {
+      background-color: brown;
+    }
+    &[data-filter="green"]:before {
+      background-color: green;
+    }
+    &[data-filter="cyan"]:before {
+      background-color: cyan;
+    }
+    &[data-filter="blue"]:before {
+      background-color: blue;
+    }
+    &[data-filter="purple"]:before {
+      background-color: purple;
+    }
+    &[data-filter="gray"]:before {
+      background-color: gray;
     }
   }
 </style>

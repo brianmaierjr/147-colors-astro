@@ -27,20 +27,7 @@ const { color } = Astro.props;
 </Layout> 
 
 <script>
-function copyHex() {
-  // Get the text field
-  var copyText = document.getElementById("hex");
 
-  // Select the text field
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); // For mobile devices
-
-   // Copy the text inside the text field
-  navigator.clipboard.writeText(copyText.value);
-
-  // Alert the copied text
-  alert("Copied the text: " + copyText.value);
-}
 </script>
 
 <style lang="scss">
@@ -60,10 +47,12 @@ function copyHex() {
     height: 100vh;
     display: grid;
     place-content: center;
+    padding: var(--space-s-l);
   }
 
   h1 {
     font-size: var(--step-6, 2em);
+    word-break: break-all;
   }
 
   .dark,

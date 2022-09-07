@@ -29,8 +29,11 @@ const uniqueGroupsArray = Object.values(colorsObject);
   <ul class="filteringList noList flow">
     <li class="filteringList__item">
       <button class="filter active" data-filter="all">
-        All
-        <span>{ colorData.length }</span>
+        <span class="filter__name">
+          <span class="swatch"></span>
+            All
+        </span>
+        <span class="count">{ colorData.length }</span>
       </button>
     </li>
 
@@ -38,8 +41,11 @@ const uniqueGroupsArray = Object.values(colorsObject);
       uniqueGroupsArray.map((color) => (
         <li class="filteringList__item">
           <button class="filter" data-filter={color.name}>
-            {color.name.toUpperCase()}
-            <span>{color.count}</span>
+            <span class="filter__name">
+              <span class="swatch"></span>
+              {color.name.toUpperCase()}
+            </span>
+            <span class="count">{color.count}</span>
           </button>
         </li>
       ))
@@ -82,6 +88,13 @@ const uniqueGroupsArray = Object.values(colorsObject);
       });
     });
   });
+
+  const filterTrigger = document.querySelector('.filterTrigger');
+  
+  filterTrigger.addEventListener('click', function() {
+    console.log('clicked');
+    document.querySelector('.header__bottom').classList.toggle('is-visible');
+  })
 </script>
 
 <style lang="scss">
@@ -114,7 +127,13 @@ const uniqueGroupsArray = Object.values(colorsObject);
     font-size: 0.9em;
     position: relative;
 
-    span  {
+    &__name {
+      display: flex;
+      gap: .5em;
+      align-items: center;
+    }
+
+    .count {
       opacity: .5;
     }
 
@@ -129,46 +148,46 @@ const uniqueGroupsArray = Object.values(colorsObject);
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    &:before {
-      content: "";
-      height: 50%;
-      width: 10%;
+    .swatch {
+      display: block;
+      height: 1em;
+      width: 1em;
       aspect-ratio: 1;
       background-color: white;
     }
 
-    &[data-filter="all"]:before {
+    &[data-filter="all"] .swatch {
       background-image: url(../147swatches.svg);
       background-size: 100% 100%;
     }
-    &[data-filter="pink"]:before {
+    &[data-filter="pink"] .swatch {
       background-color: pink;
     }
-    &[data-filter="red"]:before {
+    &[data-filter="red"] .swatch {
       background-color: red;
     }
-    &[data-filter="orange"]:before {
+    &[data-filter="orange"] .swatch {
       background-color: orange;
     }
-    &[data-filter="yellow"]:before {
+    &[data-filter="yellow"] .swatch {
       background-color: yellow;
     }
-    &[data-filter="brown"]:before {
+    &[data-filter="brown"] .swatch {
       background-color: brown;
     }
-    &[data-filter="green"]:before {
+    &[data-filter="green"] .swatch {
       background-color: green;
     }
-    &[data-filter="cyan"]:before {
+    &[data-filter="cyan"] .swatch {
       background-color: cyan;
     }
-    &[data-filter="blue"]:before {
+    &[data-filter="blue"] .swatch {
       background-color: blue;
     }
-    &[data-filter="purple"]:before {
+    &[data-filter="purple"] .swatch {
       background-color: purple;
     }
-    &[data-filter="gray"]:before {
+    &[data-filter="gray"] .swatch {
       background-color: gray;
     }
   }

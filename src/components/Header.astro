@@ -5,18 +5,20 @@ import Filters from "../components/Filters.astro";
 <header class="header">
   <div class="header__top">
     <h1 class="header__logo">
-      <a href="/"><strong>147</strong> Colors</a>
+      <a href="/"><strong>147</strong> Colors</a><a href="" target="_blank">@</a>
     </h1>
-    <button class="filterTrigger">Filters</button>
+
+    <div class="header__top__buttons">
+      <button class="filterTrigger">Filters</button>
+      <!-- <button class="menuTrigger">Menu</button>   -->
+    </div>
   </div>
 
   <div class="header__bottom flow">
     <Filters />
     <div class="header__copyright">
       <p>
-        &copy; <script type="text/javascript">
-          document.write(new Date().getFullYear());
-        </script>
+        Made with <a href="https://astro.build" target="_blank">Astro</a> by 
         <a href="https://brianmaierjr.com" target="_blank">Brian Maier Jr.</a>
       </p>
     </div>
@@ -26,7 +28,6 @@ import Filters from "../components/Filters.astro";
 <style lang="scss">
   header {
     background-color: var(--surface1);
-    min-width: 100vw;
     text-align: center;
     position: sticky;
     top: 0;
@@ -52,8 +53,21 @@ import Filters from "../components/Filters.astro";
 
   .header__bottom {
     display: none;
+    padding: var(--space-m);
+
+    @media (max-width: 799px) {
+      position: absolute;
+      background-color: var(--surface2);
+      width: 100%;
+      top: 100%;
+      left: 0;
+    }
 
     @media (min-width: 800px) {
+      display: block;
+    }
+
+    &.is-visible {
       display: block;
     }
   }
@@ -98,5 +112,9 @@ import Filters from "../components/Filters.astro";
     @media (min-width: 800px) {
       display: none;
     }
+  }
+
+  .header__copyright {
+    font-size: var(--step--2);
   }
 </style>

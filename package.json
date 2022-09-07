@@ -10,7 +10,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "animate-css-grid": "^1.4.3",
     "astro": "^1.1.5"
   },
   "devDependencies": {

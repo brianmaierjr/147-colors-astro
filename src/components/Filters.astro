@@ -55,6 +55,21 @@ const uniqueGroupsArray = Object.values(colorsObject);
 <script is:inline>
   const filters = document.querySelectorAll(".filter");
 
+  // Check for Filter in Local Storage
+  if (localStorage.getItem("filter") !== null) {
+    const storedFilter = localStorage.getItem("filter");
+    const storedFilterBtn = document.querySelector(
+      '.filter[data-filter="' + storedFilter + '"'
+    );
+    console.log(storedFilterBtn);
+
+    setTimeout(() => {
+      storedFilterBtn.click();
+      toggleFilters();
+    }, 10);
+  } else {
+  }
+
   filters.forEach((filter) => {
     filter.addEventListener("click", function () {
       let selectedFilter = filter.getAttribute("data-filter");
@@ -87,6 +102,8 @@ const uniqueGroupsArray = Object.values(colorsObject);
       });
 
       toggleFilters();
+
+      localStorage.setItem("filter", selectedFilter);
     });
   });
 

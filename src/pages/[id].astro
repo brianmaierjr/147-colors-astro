@@ -19,60 +19,53 @@ const { color } = Astro.props;
     class={`flow color ${color.theme}`.toLowerCase()}
     style={`background-color: ${color.name};`}
   >
-    <h1>{color.name}</h1>
+    <h1>
+      {color.name}
+    </h1>
+    <div class="color-inputs">
+      <input type="text" id="name" value={`${color.name}`.toLowerCase()} />
+      <input type="text" id="hex" value={`#${color.hex}`} />
+      <input type="text" id="rgb" value={`(${color.rgb})`} />
+    </div>
     <div class="color-btns">
-      <button id="hex" onclick="copyHex()">
+      <button data-id="hex" onclick="copyColor('hex')">
         <span>HEX</span>
         <span>#{color.hex}</span>
         <svg
+          version="1.1"
+          id="Layer_1"
           xmlns="http://www.w3.org/2000/svg"
-          width="192"
-          height="192"
-          fill="#000000"
-          viewBox="0 0 256 256"
-          ><rect width="256" height="256" fill="none"></rect><polyline
-            points="168 168 216 168 216 40 88 40 88 88"
-            fill="none"
-            stroke="#000000"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="16"></polyline><rect
-            x="40"
-            y="88"
-            width="128"
-            height="128"
-            fill="none"
-            stroke="#000000"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="16"></rect>
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 144.5 144.5"
+          style="enable-background:new 0 0 144.5 144.5;"
+          xml:space="preserve"
+        >
+          <path
+            d="M138.2,0.2h-96c-3.3,0-6,2.7-6,6v30h-30c-3.3,0-6,2.7-6,6v96c0,3.3,2.7,6,6,6h96c3.3,0,6-2.7,6-6v-30h30c3.3,0,6-2.7,6-6
+       v-96C144.2,2.9,141.5,0.2,138.2,0.2z M96.2,132.2h-84v-84h84V132.2z M132.2,96.2h-24v-54c0-3.3-2.7-6-6-6h-54v-24h84V96.2z"
+          ></path>
         </svg>
       </button>
-      <button id="rgb" onclick="copyRGB()">
+      <button data-id="rgb" onclick="copyColor('rgb')">
         <span>RGB</span>
-        <span>{color.rgb}</span>
+        <span>({color.rgb})</span>
         <svg
+          version="1.1"
+          id="Layer_1"
           xmlns="http://www.w3.org/2000/svg"
-          width="192"
-          height="192"
-          fill="#000000"
-          viewBox="0 0 256 256"
-          ><rect width="256" height="256" fill="none"></rect><polyline
-            points="168 168 216 168 216 40 88 40 88 88"
-            fill="none"
-            stroke="#000000"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="16"></polyline><rect
-            x="40"
-            y="88"
-            width="128"
-            height="128"
-            fill="none"
-            stroke="#000000"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="16"></rect>
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 144.5 144.5"
+          style="enable-background:new 0 0 144.5 144.5;"
+          xml:space="preserve"
+        >
+          <path
+            d="M138.2,0.2h-96c-3.3,0-6,2.7-6,6v30h-30c-3.3,0-6,2.7-6,6v96c0,3.3,2.7,6,6,6h96c3.3,0,6-2.7,6-6v-30h30c3.3,0,6-2.7,6-6
+     v-96C144.2,2.9,141.5,0.2,138.2,0.2z M96.2,132.2h-84v-84h84V132.2z M132.2,96.2h-24v-54c0-3.3-2.7-6-6-6h-54v-24h84V96.2z"
+          ></path>
         </svg>
       </button>
     </div>
@@ -84,6 +77,29 @@ const { color } = Astro.props;
     >
   </div>
 </Layout>
+
+<script is:inline>
+  function copyColor(id) {
+    // Get the text field
+    var copyText = document.getElementById(id);
+
+    // Select the text field
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText.value);
+
+    // Add class to button to show before
+    const copyBtn = document.querySelector('button[data-id="' + id + '"]');
+    copyBtn.classList.add("copied");
+
+    // Remove before after 2 seconds
+    setTimeout(() => {
+      copyBtn.classList.remove("copied");
+    }, "1000");
+  }
+</script>
 
 <style lang="scss">
   body {
@@ -100,7 +116,7 @@ const { color } = Astro.props;
 
   .color {
     border: var(--space-s-l) solid white;
-    width: 100dvw;
+    width: 100vdw;
     width: 100vw;
     height: 100dvh;
     height: 100vh;
@@ -113,6 +129,7 @@ const { color } = Astro.props;
     font-size: var(--step-7, 2em);
     word-break: break-all;
     --flow-space: 3rem;
+    text-align: center;
   }
 
   .dark {
@@ -123,7 +140,7 @@ const { color } = Astro.props;
       color: white;
     }
 
-    .color-btns button {
+    button:not(.back-link) {
       background-color: rgba(255, 255, 255, 0.3);
 
       &:hover,
@@ -141,12 +158,17 @@ const { color } = Astro.props;
       color: black;
     }
 
-    .color-btns button {
+    button:not(.back-link) {
       background-color: rgba(0, 0, 0, 0.1);
 
       &:hover,
       &:focus {
         background-color: rgba(0, 0, 0, 0.2);
+      }
+
+      &:before {
+        background-color: black;
+        color: white;
       }
     }
   }
@@ -157,25 +179,65 @@ const { color } = Astro.props;
     justify-content: center;
     align-items: center;
     --flow-space: 2rem;
+    flex-direction: column;
+    gap: 0.5em;
 
-    button {
-      border: 0;
-      padding: var(--space-s);
-      margin-right: 1rem;
-      transition: 0.2s all ease-in-out;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+    @media (min-width: 480px) {
+      flex-direction: row;
+    }
+  }
 
-      svg {
-        fill: currentColor;
-        height: 1em;
-        width: auto;
-      }
+  button:not(.back-link) {
+    border: 0;
+    padding: var(--space-xs);
+    transition: 0.2s all ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
 
-      &:last-child {
-        margin-right: 0;
+    svg {
+      fill: currentColor;
+      stroke: currentColor;
+      height: 1em;
+      width: auto;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:before {
+      content: "Copied!";
+      position: absolute;
+      bottom: calc(100% + 0.5em);
+      left: 50%;
+      transform: translateX(-50%) translateY(100%);
+      opacity: 0;
+      transition: 0.1s all ease-in-out;
+      padding: var(--space-2xs) var(--space-xs);
+      background-color: white;
+      color: black;
+      border-radius: 0.25rem;
+      font-size: var(--step--1);
+    }
+
+    &.copied {
+      &:before {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
       }
     }
+  }
+
+  .back-link {
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  .color-inputs {
+    display: none;
   }
 </style>

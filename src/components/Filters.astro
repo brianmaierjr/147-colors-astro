@@ -30,7 +30,7 @@ const uniqueGroupsArray = Object.values(colorsObject);
       <button class="filter active" data-filter="all">
         <span class="filter__name">
           <span class="swatch"></span>
-          All
+          all
         </span>
         <span class="count">{colorData.length}</span>
       </button>
@@ -42,7 +42,7 @@ const uniqueGroupsArray = Object.values(colorsObject);
           <button class="filter" data-filter={color.name}>
             <span class="filter__name">
               <span class="swatch" />
-              {color.name.toUpperCase()}
+              {color.name}
             </span>
             <span class="count">{color.count}</span>
           </button>
@@ -107,15 +107,11 @@ const uniqueGroupsArray = Object.values(colorsObject);
   h2 {
     font-size: var(--step-0);
     font-weight: normal;
-    font-style: italic;
+    font-family: "Atkinson", sans-serif;
   }
 
   .filtering {
     --flow-space: 0.5em;
-
-    @media (min-width: 800px) {
-      margin-bottom: var(--space-s);
-    }
   }
 
   .filter {
@@ -127,9 +123,6 @@ const uniqueGroupsArray = Object.values(colorsObject);
     display: flex;
     justify-content: space-between;
     position: relative;
-    font-family: "Oswald", sans-serif;
-    text-transform: uppercase;
-    font-weight: normal;
     font-size: 0.9em;
     position: relative;
 

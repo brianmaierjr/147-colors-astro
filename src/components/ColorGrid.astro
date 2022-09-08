@@ -19,14 +19,13 @@ import colorData from "../data/colors.json";
 
 <style lang="scss">
   .colorGrid {
-    @media (min-width: 600px) {
+    @media (min-width: 800px) {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
   }
 
   .colorGrid__item {
-    // padding: var(--space-xl);
     aspect-ratio: 4;
     display: inline-block;
     text-decoration: none;
@@ -35,6 +34,7 @@ import colorData from "../data/colors.json";
     transition: 0.2s all ease-in-out;
     text-align: center;
     font-family: "ClashGrotesk-Variable", sans-serif;
+    font-size: var(--step-1);
 
     @media (min-width: 800px) {
       aspect-ratio: 1/1;

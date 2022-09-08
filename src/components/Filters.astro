@@ -30,7 +30,7 @@ const uniqueGroupsArray = Object.values(colorsObject);
       <button class="filter active" data-filter="all">
         <span class="filter__name">
           <span class="swatch"></span>
-          all
+          All
         </span>
         <span class="count">{colorData.length}</span>
       </button>
@@ -39,7 +39,7 @@ const uniqueGroupsArray = Object.values(colorsObject);
     {
       uniqueGroupsArray.map((color) => (
         <li class="filteringList__item">
-          <button class="filter" data-filter={color.name}>
+          <button class="filter" data-filter={color.name.toLowerCase()}>
             <span class="filter__name">
               <span class="swatch" />
               {color.name}
@@ -52,7 +52,7 @@ const uniqueGroupsArray = Object.values(colorsObject);
   </ul>
 </div>
 
-<script>
+<script is:inline>
   const filters = document.querySelectorAll(".filter");
 
   filters.forEach((filter) => {
@@ -85,6 +85,8 @@ const uniqueGroupsArray = Object.values(colorsObject);
         el.classList.remove("hide");
         el.classList.add("show");
       });
+
+      toggleFilters();
     });
   });
 
@@ -95,7 +97,7 @@ const uniqueGroupsArray = Object.values(colorsObject);
     if (filters.classList.contains("is-visible")) {
       filters.classList.remove("is-visible");
     } else {
-      filters.classList.remove("is-visible");
+      filters.classList.add("is-visible");
     }
   }
 
@@ -111,6 +113,10 @@ const uniqueGroupsArray = Object.values(colorsObject);
   }
 
   .filtering {
+    --flow-space: 1.5em;
+  }
+
+  .filteringList {
     --flow-space: 0.5em;
   }
 

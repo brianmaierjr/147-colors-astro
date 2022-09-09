@@ -16,7 +16,33 @@ import "../styles/global.scss";
     <link rel="icon" type="image/ico" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <meta
+      name="description"
+      content="This is a tool to help web designers and developers learn the 147 CSS color names that are available today. The 147 Colors consist of 17 standard plus 130 more."
+    />
+    <meta
+      name="keywords"
+      content="147 colors, 147colors, css color names, color, css"
+    />
     <link rel="stylesheet" href="/" />
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(["_setAccount", "UA-33393426-1"]);
+      _gaq.push(["_trackPageview"]);
+
+      (function () {
+        var ga = document.createElement("script");
+        ga.type = "text/javascript";
+        ga.async = true;
+        ga.src =
+          ("https:" == document.location.protocol
+            ? "https://ssl"
+            : "http://www") + ".google-analytics.com/ga.js";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </head>
   <body>
     <slot />

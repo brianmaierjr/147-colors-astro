@@ -70,11 +70,7 @@ const { color } = Astro.props;
       </button>
     </div>
 
-    <button
-      class="back-link noButton"
-      onclick="javascript:window.history.back();"
-      >&larr; Back to the color grid</button
-    >
+    <a href="/" class="back-link">&larr; Back to the color grid</a>
   </div>
 </Layout>
 
@@ -232,6 +228,7 @@ const { color } = Astro.props;
   }
 
   .back-link {
+    text-decoration: none;
     &:hover,
     &:focus {
       text-decoration: underline;

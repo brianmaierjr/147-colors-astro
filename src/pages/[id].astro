@@ -124,8 +124,13 @@ const { color } = Astro.props;
   h1 {
     font-size: var(--step-7, 2em);
     word-break: break-all;
-    --flow-space: 3rem;
+    --flow-space: var(--space-m);
     text-align: center;
+    margin-bottom: 2rem;
+
+    @media (max-width: 480px) {
+      font-size: 8vw;
+    }
 
     @media (min-width: 1200px) {
       font-size: 8vw;

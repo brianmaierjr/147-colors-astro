@@ -1,9 +1,5 @@
 ---
 import colorData from "../data/colors.json";
-
-// const groupsArray = colorData.map((colorObject) => colorObject.group);
-// const uniqueGroupsArray = [...new Set(groupsArray)];
-
 let colorsObject = {};
 
 colorData.forEach((color) => {
@@ -177,13 +173,21 @@ let sortedGroups = uniqueGroupsArray.sort((a, b) =>
 
     &:hover,
     &:focus {
-      background-color: rgba(255, 255, 255, 0.3);
+      background-color: rgba(white, 0.3);
+
+      @media (prefers-color-scheme: light) {
+        background-color: rgba(black, 0.3);
+      }
     }
     &:hover {
       cursor: pointer;
     }
     &.active {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(white, 0.2);
+
+      @media (prefers-color-scheme: light) {
+        background-color: rgba(black, 0.2);
+      }
     }
 
     .swatch {
@@ -197,6 +201,9 @@ let sortedGroups = uniqueGroupsArray.sort((a, b) =>
     &[data-filter="all"] .swatch {
       background-image: url(../img/147swatches.svg);
       background-size: 100% 100%;
+    }
+    &[data-filter="aqua"] .swatch {
+      background-color: aqua;
     }
     &[data-filter="pink"] .swatch {
       background-color: pink;

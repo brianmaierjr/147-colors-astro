@@ -70,7 +70,7 @@ const { color } = Astro.props;
       </button>
     </div>
 
-    <a href="/" class="back-link">&larr; Back to the color grid</a>
+    <a href="/" class="back-link"><span>&larr;</span> Back to the color grid</a>
   </div>
 </Layout>
 
@@ -126,6 +126,10 @@ const { color } = Astro.props;
     word-break: break-all;
     --flow-space: 3rem;
     text-align: center;
+
+    @media (min-width: 1200px) {
+      font-size: 8vw;
+    }
   }
 
   .dark {
@@ -137,11 +141,11 @@ const { color } = Astro.props;
     }
 
     button:not(.back-link) {
-      background-color: rgba(255, 255, 255, 0.3);
+      background-color: rgba(255, 255, 255, 0.1);
 
       &:hover,
       &:focus {
-        background-color: rgba(255, 255, 255, 0.4);
+        background-color: rgba(255, 255, 255, 0.2);
       }
     }
   }
@@ -228,14 +232,38 @@ const { color } = Astro.props;
   }
 
   .back-link {
+    display: flex;
+    gap: 0.5em;
     text-decoration: none;
+    transition: 0.2s all ease-in-out;
+    justify-content: center;
+    align-items: center;
+
     &:hover,
     &:focus {
-      text-decoration: underline;
+      animation: pulse 1s infinite alternate;
     }
   }
 
   .color-inputs {
     display: none;
+  }
+
+  @keyframes pulse {
+    0% {
+      gap: 0.5em;
+    }
+    25% {
+      gap: 1em;
+    }
+    50% {
+      gap: 0.5em;
+    }
+    75% {
+      gap: 1em;
+    }
+    100% {
+      gap: 0.5em;
+    }
   }
 </style>

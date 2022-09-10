@@ -71,6 +71,8 @@ const { color } = Astro.props;
     </div>
 
     <a href="/" class="back-link"><span>&larr;</span> Back to the color grid</a>
+
+    <a href="https://brianmaierjr.com" class="my-link">Who made this?</a>
   </div>
 </Layout>
 
@@ -244,6 +246,20 @@ const { color } = Astro.props;
 
   .color-inputs {
     display: none;
+  }
+
+  .my-link {
+    position: absolute;
+    bottom: calc(var(--space-s-l) + 1em);
+    left: 50%;
+    transform: translateX(-50%);
+    text-decoration: none;
+    font-size: var(--step--2);
+
+    &:focus,
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   @keyframes pulse {

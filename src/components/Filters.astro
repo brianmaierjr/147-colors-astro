@@ -116,9 +116,11 @@ let sortedGroups = uniqueGroupsArray.sort((a, b) =>
 
     if (filters.classList.contains("is-visible")) {
       filters.classList.remove("is-visible");
+      filterTrigger.setAttribute("aria-expanded", "false");
       filterTrigger.innerText = "Filters";
     } else {
       filters.classList.add("is-visible");
+      filterTrigger.setAttribute("aria-expanded", "true");
       filterTrigger.innerText = "Close";
     }
   }

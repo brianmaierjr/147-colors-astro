@@ -1,0 +1,44 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BackLink from "../components/BackLink.astro";
+import bgImage from "../img/404.svg";
+---
+
+<Layout title="404 Not Found | CSS COlor Names">
+  <main>
+    <img class="bg-image" src={bgImage} alt="" />
+    <div class="content flow">
+      <h1><strong>404</strong></h1>
+      <h2>Sorry, Color Not Found</h2>
+      <BackLink />
+    </div>
+  </main>
+</Layout>
+
+<style lang="scss">
+  h1 {
+    --flow-space: var(--space-s);
+    font-size: var(--step-6);
+  }
+  body {
+    display: grid;
+    place-content: center;
+    text-align: center;
+    position: relative;
+    color: var(--text-color);
+  }
+  .content {
+    padding: var(--space-xl);
+    background-color: var(--surface1);
+    color: var(--text-color);
+  }
+  .bg-image {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

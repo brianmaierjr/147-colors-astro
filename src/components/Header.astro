@@ -9,8 +9,7 @@ import Filters from "../components/Filters.astro";
     </h1>
 
     <div class="header__top__buttons">
-      <button class="filterTrigger">Filters</button>
-      <!-- <button class="menuTrigger">Menu</button>   -->
+      <button class="filterTrigger" aria-expanded="false">Filters</button>
     </div>
   </div>
 
@@ -35,7 +34,7 @@ import Filters from "../components/Filters.astro";
     @media (min-width: 800px) {
       padding: var(--space-m);
       min-width: 15em;
-      min-height: 100%;
+      height: 100vh;
       overflow-y: auto;
     }
   }

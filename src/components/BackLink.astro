@@ -1,0 +1,36 @@
+<a href="/" class="back-link"><span>&larr;</span> Back to the color grid</a>
+
+<style lang="scss">
+  .back-link {
+    display: flex;
+    gap: 0.5em;
+    text-decoration: none;
+    transition: 0.2s all ease-in-out;
+    justify-content: center;
+    align-items: center;
+    color: currentColor;
+
+    &:hover,
+    &:focus {
+      animation: pulse 1s infinite alternate;
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      gap: 0.5em;
+    }
+    25% {
+      gap: 1em;
+    }
+    50% {
+      gap: 0.5em;
+    }
+    75% {
+      gap: 1em;
+    }
+    100% {
+      gap: 0.5em;
+    }
+  }
+</style>

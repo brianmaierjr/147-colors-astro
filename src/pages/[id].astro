@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import BackLink from "../components/BackLink.astro";
 import colorData from "../data/colors.json";
 
 export async function getStaticPaths() {
@@ -70,7 +71,7 @@ const { color } = Astro.props;
       </button>
     </div>
 
-    <a href="/" class="back-link"><span>&larr;</span> Back to the color grid</a>
+    <BackLink />
 
     <a href="https://brianmaierjr.com" class="my-link" target="_blank"
       >Who made this?</a
@@ -159,7 +160,7 @@ const { color } = Astro.props;
       color: black;
     }
 
-    button:not(.back-link) {
+    button {
       background-color: rgba(0, 0, 0, 0.1);
 
       &:hover,
@@ -188,7 +189,7 @@ const { color } = Astro.props;
     }
   }
 
-  button:not(.back-link) {
+  button {
     border: 0;
     padding: var(--space-xs);
     transition: 0.2s all ease-in-out;
@@ -232,20 +233,6 @@ const { color } = Astro.props;
     }
   }
 
-  .back-link {
-    display: flex;
-    gap: 0.5em;
-    text-decoration: none;
-    transition: 0.2s all ease-in-out;
-    justify-content: center;
-    align-items: center;
-
-    &:hover,
-    &:focus {
-      animation: pulse 1s infinite alternate;
-    }
-  }
-
   .color-inputs {
     display: none;
   }
@@ -261,24 +248,6 @@ const { color } = Astro.props;
     &:focus,
     &:hover {
       text-decoration: underline;
-    }
-  }
-
-  @keyframes pulse {
-    0% {
-      gap: 0.5em;
-    }
-    25% {
-      gap: 1em;
-    }
-    50% {
-      gap: 0.5em;
-    }
-    75% {
-      gap: 1em;
-    }
-    100% {
-      gap: 0.5em;
     }
   }
 </style>

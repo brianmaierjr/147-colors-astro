@@ -43,7 +43,11 @@ let sortedGroups = uniqueGroupsArray.sort((a, b) =>
     {
       sortedGroups.map((color) => (
         <li class="filteringList__item">
-          <button class="filter" data-filter={color.name.toLowerCase()}>
+          <button
+            class="filter"
+            aria-label={`Filter ${color.name} Colors`}
+            data-filter={color.name.toLowerCase()}
+          >
             <span class="filter__name">
               <span class="swatch" />
               {color.name}
@@ -138,6 +142,10 @@ let sortedGroups = uniqueGroupsArray.sort((a, b) =>
 
   .filtering {
     --flow-space: 1.5em;
+  }
+
+  .filtering__title {
+    margin-bottom: 1rem;
   }
 
   .filteringList {

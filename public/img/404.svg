@@ -1,6 +1,6 @@
-<svg width="906" height="723" viewBox="0 0 906 723" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="905" height="723" viewBox="0 0 905 723" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_568_5)">
-<rect width="906" height="723" fill="white"/>
+<rect width="905" height="723" fill="white"/>
 <rect width="181.203" height="181.175" fill="#2F80ED"/>
 <rect y="181" width="181.203" height="181.175" fill="#6FCF97"/>
 <rect y="362" width="181.203" height="181.175" fill="#F2994A"/>
@@ -17,14 +17,14 @@
 <rect x="543.609" y="181" width="181.203" height="181.175" fill="#F2C94C"/>
 <rect x="543.609" y="362" width="181.203" height="181.175" fill="#828282"/>
 <rect x="543.609" y="542" width="181.203" height="181.175" fill="#3EA3CE"/>
-<rect x="725" width="181.203" height="181.175" fill="#FF69B4"/>
-<rect x="725" y="181" width="181.203" height="181.175" fill="#27AE60"/>
-<rect x="725" y="362" width="181.203" height="181.175" fill="#BC8F8F"/>
-<rect x="725" y="542" width="181.203" height="181.175" fill="#F0E68C"/>
+<rect x="724" width="181.203" height="181.175" fill="#FF69B4"/>
+<rect x="724" y="181" width="181.203" height="181.175" fill="#27AE60"/>
+<rect x="724" y="362" width="181.203" height="181.175" fill="#BC8F8F"/>
+<rect x="724" y="542" width="181.203" height="181.175" fill="#F0E68C"/>
 </g>
 <defs>
 <clipPath id="clip0_568_5">
-<rect width="906" height="723" fill="white"/>
+<rect width="905" height="723" fill="white"/>
 </clipPath>
 </defs>
 </svg>

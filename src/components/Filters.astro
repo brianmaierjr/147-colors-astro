@@ -89,9 +89,11 @@ let sortedGroups = uniqueGroupsArray.sort((a, b) =>
 
       filters.forEach((filter) => {
         filter.classList.remove("active");
+        filter.setAttribute("aria-pressed", "false");
       });
 
       this.classList.add("active");
+      this.setAttribute("aria-pressed", "true");
 
       if (selectedFilter == "all") {
         itemsToHide = [];
@@ -188,9 +190,6 @@ let sortedGroups = uniqueGroupsArray.sort((a, b) =>
       @media (prefers-color-scheme: light) {
         background-color: rgba(black, 0.3);
       }
-    }
-    &:hover {
-      cursor: pointer;
     }
     &.active {
       background-color: rgba(white, 0.2);

@@ -212,6 +212,7 @@ const { color } = Astro.props;
 
     &:before {
       content: "Copied!";
+      visibility: hidden;
       position: absolute;
       bottom: calc(100% + 0.5em);
       left: 50%;
@@ -227,6 +228,7 @@ const { color } = Astro.props;
 
     &.copied {
       &:before {
+        visibility: visible;
         transform: translateX(-50%) translateY(0);
         opacity: 1;
       }

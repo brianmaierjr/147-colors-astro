@@ -414,7 +414,7 @@
     },
     {
         "name": "IndianRed",
-        "theme": "dark",
+        "theme": "light",
         "group": "Red",
         "hex": "CD5C5C",
         "rgb": "205,92,92"

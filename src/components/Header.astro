@@ -3,118 +3,123 @@ import Filters from "../components/Filters.astro";
 ---
 
 <header class="header">
-  <div class="header__top">
-    <h1 class="header__logo">
-      <a href="/"><strong>147</strong> Colors</a>
-    </h1>
+	<div class="header__top">
+		<h1 class="header__logo">
+			<a href="/"><strong>147</strong> Colors</a>
+		</h1>
 
-    <div class="header__top__buttons">
-      <button class="filterTrigger" aria-expanded="false">Filters</button>
-    </div>
-  </div>
+		<div class="header__top__buttons">
+			<button class="filterTrigger" aria-expanded="false">Filters</button>
+		</div>
+	</div>
 
-  <div class="header__bottom flow">
-    <Filters />
-    <div class="header__copyright">
-      <p>
-        Made with <a href="https://astro.build" target="_blank"
-          >Astro<span class="sr-only"> opens in a new tab</span>
-        </a> by
-        <a href="https://brianmaierjr.com" target="_blank"
-          >Brian Maier Jr.<span class="sr-only"> opens in a new tab</span>
-        </a>
-      </p>
-    </div>
-  </div>
+	<div class="header__bottom flow">
+		<Filters />
+		<div class="header__copyright">
+			<p>
+				Made with <a href="https://astro.build" target="_blank"
+					>Astro<span class="sr-only"> opens in a new tab</span>
+				</a> by
+				<a href="https://brianmaierjr.com" target="_blank"
+					>Brian Maier Jr.<span class="sr-only">
+						opens in a new tab</span
+					>
+				</a>
+			</p>
+			<p>
+				Data from <a href="https://csscolorsapi.com">CSS Colors API</a>
+			</p>
+		</div>
+	</div>
 </header>
 
 <style lang="scss">
-  header {
-    background-color: var(--surface1);
-    text-align: center;
-    position: sticky;
-    top: 0;
+	header {
+		background-color: var(--surface1);
+		text-align: center;
+		position: sticky;
+		top: 0;
 
-    @media (min-width: 800px) {
-      padding: var(--space-m);
-      min-width: 15em;
-      height: 100vh;
-      overflow-y: auto;
-    }
-  }
+		@media (min-width: 800px) {
+			padding: var(--space-m);
+			min-width: 15em;
+			height: 100vh;
+			overflow-y: auto;
+		}
+	}
 
-  .header__top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	.header__top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 
-    @media (min-width: 800px) {
-      text-align: center;
-      justify-content: center;
-    }
-  }
+		@media (min-width: 800px) {
+			text-align: center;
+			justify-content: center;
+		}
+	}
 
-  .header__bottom {
-    display: none;
-    padding: var(--space-m);
+	.header__bottom {
+		display: none;
+		padding: var(--space-m);
 
-    @media (max-width: 799px) {
-      position: absolute;
-      background-color: var(--surface2);
-      width: 100%;
-      top: 100%;
-      left: 0;
-    }
+		@media (max-width: 799px) {
+			position: absolute;
+			background-color: var(--surface2);
+			width: 100%;
+			top: 100%;
+			left: 0;
+		}
 
-    @media (min-width: 800px) {
-      display: block;
-    }
+		@media (min-width: 800px) {
+			display: block;
+		}
 
-    &.is-visible {
-      display: block;
-    }
-  }
+		&.is-visible {
+			display: block;
+		}
+	}
 
-  .header__copyright {
-    font-size: var(--step--1);
-  }
+	.header__copyright {
+		font-size: var(--step--1);
+	}
 
-  h1 {
-    font-size: var(--step-3);
-    margin-bottom: 0;
-    font-weight: 400;
+	h1 {
+		font-size: var(--step-3);
+		margin-bottom: 0;
+		font-weight: 400;
 
-    @media (max-width: 799px) {
-      padding-left: var(--space-m);
-    }
+		@media (max-width: 799px) {
+			padding-left: var(--space-m);
+		}
 
-    a {
-      text-decoration: none;
-      color: var(--text-color);
+		a {
+			text-decoration: none;
+			color: var(--text-color);
 
-      strong {
-        text-decoration: line-through;
-      }
-    }
-  }
+			strong {
+				text-decoration: line-through;
+			}
+		}
+	}
 
-  .filterTrigger {
-    padding: var(--space-m);
-    border: 0;
-    background-color: var(--surface2);
-    color: var(--text-color);
-    text-transform: uppercase;
+	.filterTrigger {
+		padding: var(--space-m);
+		border: 0;
+		background-color: var(--surface2);
+		color: var(--text-color);
+		text-transform: uppercase;
 
-    &:hover {
-      cursor: pointer;
-    }
+		&:hover {
+			cursor: pointer;
+		}
 
-    @media (min-width: 800px) {
-      display: none;
-    }
-  }
+		@media (min-width: 800px) {
+			display: none;
+		}
+	}
 
-  .header__copyright {
-    font-size: var(--step--2);
-  }
+	.header__copyright {
+		font-size: var(--step--2);
+	}
 </style>

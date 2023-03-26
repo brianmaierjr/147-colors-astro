@@ -1,78 +1,80 @@
 ---
-import colorData from "../data/colors.json";
+const response = await fetch("https://www.csscolorsapi.com/api/colors");
+const data = await response.json();
+const colorData = data.colors;
 ---
 
 <section class="colorGrid">
-  {
-    colorData.map((color) => (
-      <a
-        class={`colorGrid__item ${color.theme} ${color.group}`}
-        style={`background-color: ${color.name};`}
-        data-filter={`${color.group}`.toLowerCase()}
-        href={`/${color.name}`.toLowerCase()}
-      >
-        <span class="colors__name">{color.name}</span>
-      </a>
-    ))
-  }
+	{
+		colorData.map((color) => (
+			<a
+				class={`colorGrid__item ${color.theme} ${color.group}`}
+				style={`background-color: ${color.name};`}
+				data-filter={`${color.group}`.toLowerCase()}
+				href={`/${color.name}`.toLowerCase()}
+			>
+				<span class="colors__name">{color.name}</span>
+			</a>
+		))
+	}
 </section>
 
 <style lang="scss">
-  .colorGrid {
-    @media (min-width: 800px) {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
-    }
-  }
+	.colorGrid {
+		@media (min-width: 800px) {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+		}
+	}
 
-  .colorGrid__item {
-    aspect-ratio: 4;
-    display: inline-block;
-    text-decoration: none;
-    display: grid;
-    place-content: center;
-    transition: 0.2s all ease-in-out;
-    text-align: center;
-    font-family: "ClashGrotesk-Variable", sans-serif;
-    font-size: var(--step-1);
+	.colorGrid__item {
+		aspect-ratio: 4;
+		display: inline-block;
+		text-decoration: none;
+		display: grid;
+		place-content: center;
+		transition: 0.2s all ease-in-out;
+		text-align: center;
+		font-family: "ClashGrotesk-Variable", sans-serif;
+		font-size: var(--step-1);
 
-    @media (min-width: 800px) {
-      aspect-ratio: 1/1;
-      display: grid;
-      align-self: stretch;
-      padding: 0;
-    }
+		@media (min-width: 800px) {
+			aspect-ratio: 1/1;
+			display: grid;
+			align-self: stretch;
+			padding: 0;
+		}
 
-    &:hover,
-    &:focus {
-      span {
-        opacity: 1;
-      }
-    }
+		&:hover,
+		&:focus {
+			span {
+				opacity: 1;
+			}
+		}
 
-    &.hide {
-      display: none;
-    }
+		&.hide {
+			display: none;
+		}
 
-    &.show {
-      display: grid;
-    }
+		&.show {
+			display: grid;
+		}
 
-    &.dark {
-      color: white;
-    }
+		&.dark {
+			color: white;
+		}
 
-    &.light {
-      color: #111111;
-    }
+		&.light {
+			color: #111111;
+		}
 
-    span {
-      transition: 0.25s all ease-in-out;
-      opacity: 1;
+		span {
+			transition: 0.25s all ease-in-out;
+			opacity: 1;
 
-      @media (min-width: 800px) {
-        opacity: 0;
-      }
-    }
-  }
+			@media (min-width: 800px) {
+				opacity: 0;
+			}
+		}
+	}
 </style>

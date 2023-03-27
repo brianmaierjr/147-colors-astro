@@ -1,248 +1,250 @@
 ---
-import colorData from "../data/colors.json";
+const response = await fetch("https://www.csscolorsapi.com/api/colors");
+const data = await response.json();
+const colorData = data.colors;
 let colorsObject = {};
 
 colorData.forEach((color) => {
-  let colorGroup = color.group;
+	let colorGroup = color.group;
 
-  if (colorsObject[colorGroup]) {
-    let count = colorsObject[colorGroup].count;
-    colorsObject[colorGroup].count++;
-  } else {
-    colorsObject[colorGroup] = {
-      name: colorGroup,
-      count: 1,
-    };
-  }
+	if (colorsObject[colorGroup]) {
+		let count = colorsObject[colorGroup].count;
+		colorsObject[colorGroup].count++;
+	} else {
+		colorsObject[colorGroup] = {
+			name: colorGroup,
+			count: 1,
+		};
+	}
 });
 
 const uniqueGroupsArray = Object.values(colorsObject);
 
 let sortedGroups = uniqueGroupsArray.sort((a, b) =>
-  a.name.toLowerCase() < b.name.toLowerCase()
-    ? -1
-    : b.name.toLowerCase() > a.name.toLowerCase()
-    ? 1
-    : 0
+	a.name.toLowerCase() < b.name.toLowerCase()
+		? -1
+		: b.name.toLowerCase() > a.name.toLowerCase()
+		? 1
+		: 0
 );
 ---
 
 <div class="filtering">
-  <h2 class="filtering__title">Filter colors:</h2>
-  <ul class="filteringList noList flow">
-    <li class="filteringList__item">
-      <button class="filter active" data-filter="all">
-        <span class="filter__name">
-          <span class="swatch"></span>
-          All
-        </span>
-        <span class="count">{colorData.length}</span>
-      </button>
-    </li>
+	<h2 class="filtering__title">Filter colors:</h2>
+	<ul class="filteringList noList flow">
+		<li class="filteringList__item">
+			<button class="filter active" data-filter="all">
+				<span class="filter__name">
+					<span class="swatch"></span>
+					All
+				</span>
+				<span class="count">{colorData.length}</span>
+			</button>
+		</li>
 
-    {
-      sortedGroups.map((color) => (
-        <li class="filteringList__item">
-          <button
-            class="filter"
-            aria-label={`Filter ${color.name} Colors`}
-            data-filter={color.name.toLowerCase()}
-          >
-            <span class="filter__name">
-              <span class="swatch" />
-              {color.name}
-            </span>
-            <span class="count">{color.count}</span>
-          </button>
-        </li>
-      ))
-    }
-  </ul>
+		{
+			sortedGroups.map((color) => (
+				<li class="filteringList__item">
+					<button
+						class="filter"
+						aria-label={`Filter ${color.name} Colors`}
+						data-filter={color.name.toLowerCase()}
+					>
+						<span class="filter__name">
+							<span class="swatch" />
+							{color.name}
+						</span>
+						<span class="count">{color.count}</span>
+					</button>
+				</li>
+			))
+		}
+	</ul>
 </div>
 
 <script is:inline>
-  const filters = document.querySelectorAll(".filter");
+	const filters = document.querySelectorAll(".filter");
 
-  // Check for Filter in Local Storage
-  if (localStorage.getItem("filter") !== null) {
-    const storedFilter = localStorage.getItem("filter");
-    const storedFilterBtn = document.querySelector(
-      '.filter[data-filter="' + storedFilter + '"'
-    );
+	// Check for Filter in Local Storage
+	if (localStorage.getItem("filter") !== null) {
+		const storedFilter = localStorage.getItem("filter");
+		const storedFilterBtn = document.querySelector(
+			'.filter[data-filter="' + storedFilter + '"'
+		);
 
-    setTimeout(() => {
-      storedFilterBtn.click();
-      toggleFilters();
-    }, 10);
-  } else {
-  }
+		setTimeout(() => {
+			storedFilterBtn.click();
+			toggleFilters();
+		}, 10);
+	} else {
+	}
 
-  filters.forEach((filter) => {
-    filter.addEventListener("click", function () {
-      let selectedFilter = filter.getAttribute("data-filter");
-      let itemsToHide = document.querySelectorAll(
-        `.colorGrid__item:not([data-filter='${selectedFilter}'])`
-      );
-      let itemsToShow = document.querySelectorAll(
-        `.colorGrid [data-filter='${selectedFilter}']`
-      );
+	filters.forEach((filter) => {
+		filter.addEventListener("click", function () {
+			let selectedFilter = filter.getAttribute("data-filter");
+			let itemsToHide = document.querySelectorAll(
+				`.colorGrid__item:not([data-filter='${selectedFilter}'])`
+			);
+			let itemsToShow = document.querySelectorAll(
+				`.colorGrid [data-filter='${selectedFilter}']`
+			);
 
-      filters.forEach((filter) => {
-        filter.classList.remove("active");
-        filter.setAttribute("aria-pressed", "false");
-      });
+			filters.forEach((filter) => {
+				filter.classList.remove("active");
+				filter.setAttribute("aria-pressed", "false");
+			});
 
-      this.classList.add("active");
-      this.setAttribute("aria-pressed", "true");
+			this.classList.add("active");
+			this.setAttribute("aria-pressed", "true");
 
-      if (selectedFilter == "all") {
-        itemsToHide = [];
-        itemsToShow = document.querySelectorAll(".colorGrid__item");
-      }
+			if (selectedFilter == "all") {
+				itemsToHide = [];
+				itemsToShow = document.querySelectorAll(".colorGrid__item");
+			}
 
-      itemsToHide.forEach((el) => {
-        el.classList.add("hide");
-        el.classList.remove("show");
-      });
+			itemsToHide.forEach((el) => {
+				el.classList.add("hide");
+				el.classList.remove("show");
+			});
 
-      itemsToShow.forEach((el) => {
-        el.classList.remove("hide");
-        el.classList.add("show");
-      });
+			itemsToShow.forEach((el) => {
+				el.classList.remove("hide");
+				el.classList.add("show");
+			});
 
-      toggleFilters();
+			toggleFilters();
 
-      localStorage.setItem("filter", selectedFilter);
-    });
-  });
+			localStorage.setItem("filter", selectedFilter);
+		});
+	});
 
-  // Trigger Filters on Mobile
-  function toggleFilters() {
-    const filters = document.querySelector(".header__bottom");
+	// Trigger Filters on Mobile
+	function toggleFilters() {
+		const filters = document.querySelector(".header__bottom");
 
-    if (filters.classList.contains("is-visible")) {
-      filters.classList.remove("is-visible");
-      filterTrigger.setAttribute("aria-expanded", "false");
-      filterTrigger.innerText = "Filters";
-    } else {
-      filters.classList.add("is-visible");
-      filterTrigger.setAttribute("aria-expanded", "true");
-      filterTrigger.innerText = "Close";
-    }
-  }
+		if (filters.classList.contains("is-visible")) {
+			filters.classList.remove("is-visible");
+			filterTrigger.setAttribute("aria-expanded", "false");
+			filterTrigger.innerText = "Filters";
+		} else {
+			filters.classList.add("is-visible");
+			filterTrigger.setAttribute("aria-expanded", "true");
+			filterTrigger.innerText = "Close";
+		}
+	}
 
-  const filterTrigger = document.querySelector(".filterTrigger");
-  filterTrigger.addEventListener("click", toggleFilters);
+	const filterTrigger = document.querySelector(".filterTrigger");
+	filterTrigger.addEventListener("click", toggleFilters);
 </script>
 
 <style lang="scss">
-  h2 {
-    font-size: var(--step-0);
-    font-weight: normal;
-    font-family: "Atkinson", sans-serif;
-  }
+	h2 {
+		font-size: var(--step-0);
+		font-weight: normal;
+		font-family: "Atkinson", sans-serif;
+	}
 
-  .filtering {
-    --flow-space: 1.5em;
-  }
+	.filtering {
+		--flow-space: 1.5em;
+	}
 
-  .filtering__title {
-    margin-bottom: 1rem;
-  }
+	.filtering__title {
+		margin-bottom: 1rem;
+	}
 
-  .filteringList {
-    --flow-space: 0.5em;
+	.filteringList {
+		--flow-space: 0.5em;
 
-    @media (max-width: 799px) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5em;
-      --flow-space: 0.25em;
-    }
-  }
+		@media (max-width: 799px) {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 0.5em;
+			--flow-space: 0.25em;
+		}
+	}
 
-  .filter {
-    background-color: var(--surface3);
-    padding: var(--space-2xs);
-    width: 100%;
-    border: none;
-    color: var(--text-color);
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    font-size: 0.9em;
-    position: relative;
+	.filter {
+		background-color: var(--surface3);
+		padding: var(--space-2xs);
+		width: 100%;
+		border: none;
+		color: var(--text-color);
+		display: flex;
+		justify-content: space-between;
+		position: relative;
+		font-size: 0.9em;
+		position: relative;
 
-    &__name {
-      display: flex;
-      gap: 0.5em;
-      align-items: center;
-    }
+		&__name {
+			display: flex;
+			gap: 0.5em;
+			align-items: center;
+		}
 
-    .count {
-      opacity: 0.5;
-    }
+		.count {
+			opacity: 0.5;
+		}
 
-    &:hover,
-    &:focus {
-      background-color: rgba(white, 0.3);
+		&:hover,
+		&:focus {
+			background-color: rgba(white, 0.3);
 
-      @media (prefers-color-scheme: light) {
-        background-color: rgba(black, 0.3);
-      }
-    }
-    &.active {
-      background-color: rgba(white, 0.2);
+			@media (prefers-color-scheme: light) {
+				background-color: rgba(black, 0.3);
+			}
+		}
+		&.active {
+			background-color: rgba(white, 0.2);
 
-      @media (prefers-color-scheme: light) {
-        background-color: rgba(black, 0.2);
-      }
-    }
+			@media (prefers-color-scheme: light) {
+				background-color: rgba(black, 0.2);
+			}
+		}
 
-    .swatch {
-      display: block;
-      height: 1em;
-      width: 1em;
-      aspect-ratio: 1;
-      background-color: white;
-    }
+		.swatch {
+			display: block;
+			height: 1em;
+			width: 1em;
+			aspect-ratio: 1;
+			background-color: white;
+		}
 
-    &[data-filter="all"] .swatch {
-      background-image: url(../img/147swatches.svg);
-      background-size: 100% 100%;
-    }
-    &[data-filter="aqua"] .swatch {
-      background-color: aqua;
-    }
-    &[data-filter="pink"] .swatch {
-      background-color: pink;
-    }
-    &[data-filter="red"] .swatch {
-      background-color: red;
-    }
-    &[data-filter="orange"] .swatch {
-      background-color: orange;
-    }
-    &[data-filter="yellow"] .swatch {
-      background-color: yellow;
-    }
-    &[data-filter="brown"] .swatch {
-      background-color: brown;
-    }
-    &[data-filter="green"] .swatch {
-      background-color: green;
-    }
-    &[data-filter="cyan"] .swatch {
-      background-color: cyan;
-    }
-    &[data-filter="blue"] .swatch {
-      background-color: blue;
-    }
-    &[data-filter="purple"] .swatch {
-      background-color: purple;
-    }
-    &[data-filter="gray"] .swatch {
-      background-color: gray;
-    }
-  }
+		&[data-filter="all"] .swatch {
+			background-image: url(../img/147swatches.svg);
+			background-size: 100% 100%;
+		}
+		&[data-filter="aqua"] .swatch {
+			background-color: aqua;
+		}
+		&[data-filter="pink"] .swatch {
+			background-color: pink;
+		}
+		&[data-filter="red"] .swatch {
+			background-color: red;
+		}
+		&[data-filter="orange"] .swatch {
+			background-color: orange;
+		}
+		&[data-filter="yellow"] .swatch {
+			background-color: yellow;
+		}
+		&[data-filter="brown"] .swatch {
+			background-color: brown;
+		}
+		&[data-filter="green"] .swatch {
+			background-color: green;
+		}
+		&[data-filter="cyan"] .swatch {
+			background-color: cyan;
+		}
+		&[data-filter="blue"] .swatch {
+			background-color: blue;
+		}
+		&[data-filter="purple"] .swatch {
+			background-color: purple;
+		}
+		&[data-filter="gray"] .swatch {
+			background-color: gray;
+		}
+	}
 </style>

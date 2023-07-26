@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import BackLink from "../components/BackLink.astro";
-// import colorData from "../data/colors.json";
 
 export async function getStaticPaths() {
 	const response = await fetch("https://www.csscolorsapi.com/api/colors");
@@ -22,7 +21,7 @@ const { color } = Astro.props;
 <Layout title={`147 Colors | ${color.name}`}>
 	<div
 		class={`flow color ${color.theme}`.toLowerCase()}
-		style={`background-color: ${color.name};`}
+		style={`background-color: ${color.name}; view-transition-name: ${color.name};`}
 	>
 		<h1>
 			{color.name}

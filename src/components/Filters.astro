@@ -81,6 +81,11 @@ let sortedGroups = uniqueGroupsArray.sort((a, b) =>
 
 	filters.forEach((filter) => {
 		filter.addEventListener("click", function () {
+			if (!document.startViewTransition) {
+				console.log("no transition");
+			} else {
+				console.log("transition");
+			}
 			let selectedFilter = filter.getAttribute("data-filter");
 			let itemsToHide = document.querySelectorAll(
 				`.colorGrid__item:not([data-filter='${selectedFilter}'])`

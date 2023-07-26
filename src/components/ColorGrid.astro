@@ -4,14 +4,14 @@ const data = await response.json();
 const colorData = data.colors;
 ---
 
-<section class="colorGrid">
+<section class="colorGrid" style="view-transition-name: home;">
 	{
 		colorData.map((color) => (
 			<a
 				class={`colorGrid__item ${color.theme} ${color.group}`}
-				style={`background-color: ${color.name};`}
 				data-filter={`${color.group}`.toLowerCase()}
 				href={`/${color.name}`.toLowerCase()}
+				style={`view-transition-name: ${color.name}; background-color: ${color.name};`}
 			>
 				<span class="colors__name">{color.name}</span>
 			</a>

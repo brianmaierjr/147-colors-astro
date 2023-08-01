@@ -1,6 +1,6 @@
 ---
 export interface Props {
-  title: string;
+	title: string;
 }
 
 const { title } = Astro.props;
@@ -10,50 +10,50 @@ import "../styles/global.scss";
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/ico" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
-    <meta property="og:locale" content="en_US" />
-    <title>{title}</title>
-    <meta
-      name="description"
-      content="A tool for web designers and developers to learn the 147+ CSS color names that are available today."
-    />
-    <meta
-      name="keywords"
-      content="147 colors, 147colors, css color names, color, css"
-    />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="147 Colors Grid - CSS Color Names" />
-    <meta
-      property="og:description"
-      content="This is a tool to help web designers and developers learn the 147 CSS color names that are available today. The 147 Colors consist of 17 standard plus 130 more."
-    />
-    <meta
-      property="og:url"
-      content="http://www.colors.commutercreative.com/grid/"
-    />
-    <meta property="og:site_name" content="147 Colors" />
-    <link rel="stylesheet" href="/" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/ico" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<meta property="og:locale" content="en_US" />
+		<title>{title}</title>
+		<meta
+			name="description"
+			content="A tool for web designers and developers to learn the 147+ CSS color names that are available today."
+		/>
+		<meta
+			name="keywords"
+			content="147 colors, 147colors, css color names, color, css"
+		/>
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="147 Colors Grid - CSS Color Names" />
+		<meta
+			property="og:description"
+			content="This is a tool to help web designers and developers learn the 147 CSS color names that are available today. The 147 Colors consist of 17 standard plus 130 more."
+		/>
+		<meta
+			property="og:url"
+			content="http://www.colors.commutercreative.com/grid/"
+		/>
+		<meta property="og:site_name" content="147 Colors" />
+		<link rel="stylesheet" href="/" />
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-33393426-1"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+		<!-- Google tag (gtag.js) -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-HC8FY69P7B"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
 
-      gtag("config", "UA-33393426-1");
-    </script>
-  </head>
-  <body>
-    <slot />
-  </body>
+			gtag("config", "G-HC8FY69P7B");
+		</script>
+	</head>
+	<body>
+		<slot />
+	</body>
 </html>
